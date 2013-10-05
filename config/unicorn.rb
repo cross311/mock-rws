@@ -1,7 +1,9 @@
 # config/unicorn.rb
-worker_processes 3
-timeout 30
-preload_app true
+if ENV['RACK_ENV'] == 'development'
+  worker_processes 1
+  listen "#{ENV['BOXEN_SOCKET_DIR']}/rails_app", :backlog => 1024
+  timeout 120
+end
 
 before_fork do |server, worker|
 
