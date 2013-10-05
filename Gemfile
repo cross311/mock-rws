@@ -29,6 +29,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Use unicorn as the app server
+gem 'unicorn'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -38,17 +44,11 @@ group :development do
   gem "foreman", "~> 0.57.0"
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :test, :development do
+  gem "debugger"
+end
 
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-# Support Heroku Deployment
-gem 'rails_12factor', group: :production
+group :production do
+	# Support Heroku Deployment
+	gem 'rails_12factor', group: :production
+end
