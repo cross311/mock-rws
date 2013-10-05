@@ -10,4 +10,4 @@ cd $(dirname "$0")/..
 
 export RAILS_ENV RACK_ENV
 
-bin/unicorn_rails -E "$RAILS_ENV" -c config/unicorn.rb
+unicorn -E "$RAILS_ENV" -c config/unicorn.rb
