@@ -34,11 +34,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem "foreman", "~> 0.57.0"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
