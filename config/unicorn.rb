@@ -1,8 +1,12 @@
 # config/unicorn.rb
-if ENV['RACK_ENV'] == 'development'
+if ENV['RACK_ENV'] == 'development' || ENV['RAILS_ENV'] == 'development'
   worker_processes 1
   listen "#{ENV['BOXEN_SOCKET_DIR']}/mock-rws", :backlog => 1024
   timeout 120
+else
+  worker_processes 3
+  timeout 60
+  listen "#{ENV['PORT']}", :backlog => 1024
 end
 
 before_fork do |server, worker|
