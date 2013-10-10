@@ -7,7 +7,7 @@ MockRws::Application.routes.draw do
 
  get 'RaveWebServices/CodingContext/:context_uuid/Query' => 'query#create'
 
- get 'RaveWebServices/Query/:query_uuid/Cancel' => 'query#cancel'
+ get 'RaveWebServices/Query/:query_uuid/Cancel' => 'query#cancel', as: :query_cancel
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

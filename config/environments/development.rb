@@ -26,4 +26,7 @@ MockRws::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Push output to foreman as fast as possible
+  $stdout.sync = true
 end

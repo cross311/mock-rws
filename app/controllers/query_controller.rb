@@ -4,6 +4,7 @@ class QueryController < ActionController::Base
   protect_from_forgery with: :exception
 
   def create
+    @CancelQueryUrl = query_cancel_url(query_uuid: params[:context_uuid])
     render content_type: "application/xml"
   end
 
