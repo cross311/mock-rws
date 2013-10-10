@@ -6,8 +6,4 @@ class ApplicationController < ActionController::Base
   def index
   	render text: "Hello World"
   end
-
-  def no_content_response
-  	render :nothing => true, :status => :no_content
-  end
 end

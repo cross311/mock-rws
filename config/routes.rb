@@ -5,7 +5,9 @@ MockRws::Application.routes.draw do
   # You can have the root of your site routed with "root"
  root to: 'application#index'
 
- get 'RaveWebServices/Query/:query_uuid/Cancel' => 'application#no_content_response'
+ get 'RaveWebServices/CodingContext/:context_uuid/Query' => 'query#create'
+
+ get 'RaveWebServices/Query/:query_uuid/Cancel' => 'query#cancel'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
