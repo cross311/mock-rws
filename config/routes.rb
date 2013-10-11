@@ -6,8 +6,8 @@ MockRws::Application.routes.draw do
  root to: 'application#index'
 
 #Query Routes
+ get 'RaveWebServices/CodingContext/error-rws:rws_code/Query' => 'error#index', as: :error_index
  get 'RaveWebServices/CodingContext/:context_uuid/Query' => 'query#create', as: :query_open
- get 'RaveWebServices/Query/notfound*additional' => 'query#query_not_found', as: :query_not_found
  get 'RaveWebServices/Query/:query_uuid/Cancel' => 'query#cancel', as: :query_cancel
  get 'RaveWebServices/Query/:query_uuid/Forward' => 'query#forward', as: :query_forward
  get 'RaveWebServices/Query/:query_uuid/Answer' => 'query#answer', as: :query_answer
