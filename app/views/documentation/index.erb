@@ -1,7 +1,7 @@
 <div class="jumbotron">
-	<div clas="container">
-<h1>Mock RWS Documentation</h1>
-<p>Version 0.0.1</p>
+	<div class="container">
+<h1>Mock RWS <small>Version 0.0.1</small></h1>
+<p>Rails application deployable on Heroku, for testing integrations with RWS!</p>
 </div>
 </div>
 <div class="container">
@@ -56,6 +56,17 @@
                   </li>
                   <li>
                     <a href="#query-forward-error">Error</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#query-requery">Re-Query Query</a>
+                <ul class="nav">
+                  <li>
+                    <a href="#query-requery-success">Success</a>
+                  </li>
+                  <li>
+                    <a href="#query-requery-error">Error</a>
                   </li>
                 </ul>
               </li>
@@ -616,6 +627,117 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
     <li>
       <span class="payload-param">marking_group:</span>
       The name of the Rave marking group to forward the query up to.
+    </li>
+  </ul>
+  <h4>Response</h4>
+  <div class="panel panel-warning">
+  <div class="panel-heading">Http Status: 404, Header X-MWS-Status: 0200002</div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;errors xml:lang='en'&gt;
+    &lt;error logref='afae55ca-67c8-464b-9d4f-28a12e80991f'&gt;
+        &lt;message&gt;Internal Server Error&lt;/message&gt;
+        &lt;link rel='help' 
+          href='http://rws-webhelp.s3.amazonaws.com/WebHelp_ENG/search.html?q=RWS:rws_code' 
+          title='Error information'/&gt;
+    &lt;/error&gt;
+&lt;/errors&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+    </pre>
+  </div>
+  </div>
+
+<h3 id="query-requery">Re-Query Query</h3>
+  <h4 id="query-requery-success">Success Request</h4>
+  <div class="panel panel-default">
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_edit_url(":query_uuid", "Re-Query")%></div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ODM 
+FileType=&quot;Snapshot&quot; 
+CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
+FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
+ODMVersion=&quot;1.3&quot; 
+xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
+xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
+  &lt;mdsol:PartialClinicalData&gt;
+
+    &lt;mdsol:Query Value=&quot;:query_text&quot;/&gt;
+
+  &lt;/mdsol:PartialClinicalData&gt;
+&lt;/ODM&gt;
+</pre>
+  </div>
+  </div>
+    <div class="alert alert-info">
+        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
+    </div>
+  <h6>URL Params</h6>
+  <ul class="url-params">
+    <li>
+      <span class="url-param">query_uuid:</span>
+      UUID that was created by Coder to uniquely identify the re-querying query against the Rave datapoint.
+    </li>
+  </ul>
+  <h6>Payload Params</h6>
+  <ul class="payload-params">
+    <li>
+      <span class="payload-param">query_text:</span>
+      The query you would like to re-query to the Rave datapoint.
+    </li>
+  </ul>
+  <h4>Response</h4>
+  <div class="panel panel-success">
+  <div class="panel-heading">Http Status: 204</div>
+  <div class="panel-body">
+    <pre>NO CONTENT</pre>
+  </div>
+  </div>
+
+
+  <h4 id="query-requery-error">RWS Error Response</h4>
+  <div class="panel panel-default">
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_edit_error_url(":rws_code", "Re-Query")%></div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ODM 
+FileType=&quot;Snapshot&quot; 
+CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
+FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
+ODMVersion=&quot;1.3&quot; 
+xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
+xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
+  &lt;mdsol:PartialClinicalData&gt;
+
+    &lt;mdsol:Query Value=&quot;:query_text&quot;/&gt;
+
+  &lt;/mdsol:PartialClinicalData&gt;
+&lt;/ODM&gt;
+</pre>
+  </div>
+  </div>
+    <div class="alert alert-info">
+        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
+    </div>
+  <h6>URL Params</h6>
+  <ul class="url-params">
+    <li>
+      <span class="url-param">rws_code:</span>
+      The RWS code you would like the mock endpoint to return with.
+    </li>
+    <li>
+      <span class="url-param">query_uuid:</span>
+      UUID that was created by Coder to uniquely identify the re-querying query against the Rave datapoint.
+    </li>
+  </ul>
+  <h6>Payload Params</h6>
+  <ul class="payload-params">
+    <li>
+      <span class="payload-param">query_text:</span>
+      The query you would like to re-query to the Rave datapoint.
     </li>
   </ul>
   <h4>Response</h4>
