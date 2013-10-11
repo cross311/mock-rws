@@ -5,7 +5,7 @@ class ErrorController < ActionController::Base
 
   def index
     @log_ref = SecureRandom.uuid
-  	@error = RWS_Error.create(params[:rws_coder])
+  	@error = RWS_Error.get_error(params[:rws_code])
     response.headers["X-MWS-Status"] = @error.mws_status
     render status: @error.http_status, content_type: # "application/vnd.error+xml"
       "application/xml"
