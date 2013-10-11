@@ -5,12 +5,39 @@
 </div>
 </div>
 <div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar" data-spy="affix">
+        <ul id="main-nav" class="nav nav-stacked">
+          <li>
+            <a href="#coder-endpoints">Coder Endpoints</a>
+            <ul class="nav">
+              <li>
+                <a href="#coder-open-query">Open Query</a>
+                <ul class="nav">
+                  <li>
+                    <a href="#coder-open-query-success">Success</a>
+                  </li>
+                  <li>
+                    <a href="#coder-open-query-error">Error</a>
+                  </li>
+                  <li>
+                    <a href="#coder-open-query-success-cancel-error">Cancel URI Error</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
 	<div class="page-header">
-		<h2>Coder <small>Endpoints</small></h2>
+		<h2 id="coder-endpoints">Coder <small>Endpoints</small></h2>
 		<p>All endpoints described here are maintained and used by the Coder application.</p>
 	</div>
-<h3>Open Query</h3>
-	<h4>Success Request</h4>
+<h3 id="coder-open-query">Open Query</h3>
+	<h4 id="coder-open-query-success">Success Request</h4>
 	<div class="panel panel-default">
 	<div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_url(":context_uuid", ":query_uuid")%></div>
 	<div class="panel-body">
@@ -82,7 +109,7 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
 	</div>
 
 
-  <h4>Error Request</h4>
+  <h4 id="coder-open-query-error">RWS Error Response</h4>
   <div class="panel panel-default">
   <div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_error_url(":rws_code", ":query_uuid")%></div>
   <div class="panel-body">
@@ -150,7 +177,7 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
   </div>
 
 
-  <h4>Success Request With Error Cancel Query URI</h4>
+  <h4 id="coder-open-query-success-cancel-error">Success Request With Error Cancel Query URI</h4>
   <div class="panel panel-default">
   <div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_edit_error_url(":rws_code", ":query_uuid")%></div>
   <div class="panel-body">
@@ -218,6 +245,8 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
     &lt;/mdsol:PartialClinicalData&gt;
 &lt;/ODM&gt;
     </pre>
+  </div>
+  </div>
   </div>
   </div>
 </div>
