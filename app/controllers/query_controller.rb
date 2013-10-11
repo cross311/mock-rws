@@ -4,7 +4,12 @@ class QueryController < ActionController::Base
   protect_from_forgery with: :exception
 
   def create
-    @query_uuid = params[:query_uuid]
+    @cancel_uri = query_edit_url(params[:query_uuid], "Cancel") 
+    render_odm
+  end
+
+  def create_edit_error
+    @cancel_uri = query_edit_error_url(params[:rws_code], "Cancel")
     render_odm
   end
 
@@ -16,7 +21,7 @@ class QueryController < ActionController::Base
 
   def render_odm
     @file_guid = SecureRandom.uuid
-    render content_type: # "application/vnd.odm+xml"
+    render action: :create, content_type: # "application/vnd.odm+xml"
       "application/xml"
   end
 
