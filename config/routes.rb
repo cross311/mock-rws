@@ -6,12 +6,12 @@ MockRws::Application.routes.draw do
  root to: 'documentation#index'
 
 #Query Routes
- get 'RaveWebServices/CodingContext/error-rws:rws_code/Query/:query_uuid' => 'error#index', as: :query_create_error
- get 'RaveWebServices/CodingContext/error-query-edit:rws_code/Query/:query_uuid' => 'query#create_edit_error', as: :query_create_edit_error
- get 'RaveWebServices/CodingContext/:context_uuid/Query/:query_uuid' => 'query#create', as: :query_create
+ match 'RaveWebServices/CodingContext/error-rws:rws_code/Query/:query_uuid', to: 'error#index', as: :query_create_error, via: :all
+ match 'RaveWebServices/CodingContext/error-query-edit:rws_code/Query/:query_uuid', to: 'query#create_edit_error', as: :query_create_edit_error, via: :all
+ match 'RaveWebServices/CodingContext/:context_uuid/Query/:query_uuid', to: 'query#create', as: :query_create, via: :all
 
- get 'RaveWebServices/Query/error-rws:rws_code/*method' => 'error#index', as: :query_edit_error
- get 'RaveWebServices/Query/:query_uuid/*method' => 'query#edit', as: :query_edit
+ match 'RaveWebServices/Query/error-rws:rws_code/*method', to: 'error#index', as: :query_edit_error, via: :all
+ match 'RaveWebServices/Query/:query_uuid/*method', to: 'query#edit', as: :query_edit, via: :all
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
