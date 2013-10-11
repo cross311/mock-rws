@@ -6,5 +6,6 @@ class DocumentationController < ActionController::Base
   layout "application.html.erb"
 
   def index
+    @errors = RWS_Error.get_all
   end
 end

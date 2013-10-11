@@ -16,6 +16,10 @@ class RWS_Error
 		end
 	end
 
+	def self.get_all
+		[self.RWS00071, self.RWS00121, self.NotYetSupported]
+	end
+
 	private
 
 	def self.RWSUnknown(rws_short_code)
@@ -42,6 +46,12 @@ class RWS_Error
 		error.rws_code = "RWS00121"
 		error.mws_status = "0200002"
 		error.http_status = :forbidden
+		error
+	end
+
+	def self.NotYetSupported
+		error = self.RWSUnknown(0)
+		error.rws_code = "Not Yet Supported"
 		error
 	end
 end

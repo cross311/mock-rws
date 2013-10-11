@@ -83,6 +83,16 @@
               </li>
             </ul>
           </li>
+          <li>
+            <a href="#rws-error-codes">RWS Error Codes</a>
+            <ul class="nav">
+              <% @errors.each do |error| %>
+              <li>
+                <a href="#rws-error-codes-<%= error.rws_code %>"><%= error.rws_code %></a>
+              </li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -870,6 +880,26 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
   </div>
   </div>
 
+  <div class="page-header">
+    <h2 id="rws-error-codes">Supported RWS Error Codes</h2>
+    <p>RWS error codes are being added as they need to be tested.</p>
+  </div>
+  <% @errors.each do |error| %>
+    <div class="panel panel-default">
+    <div class="panel-heading" >
+      <h3 class="panel-title" id="rws-error-codes-<%= error.rws_code %>"><%= error.rws_code %></h3>
+    </div>
+    <div class="panel-body">
+      <dl>
+        <dt>HTTP STATUS</dt>
+        <dd><%= error.http_status %></dd>
+        <dt>Header X-MWS-Status</dt>
+        <dd><%= error.mws_status %></dd>
+        <dt>Message (en)</dt>
+        <dd><%= error.message %></dd>
+    </div>
+    </div>
+  <% end %>
 
   </div>
   </div>
