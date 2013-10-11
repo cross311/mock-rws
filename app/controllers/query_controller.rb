@@ -4,27 +4,11 @@ class QueryController < ActionController::Base
   protect_from_forgery with: :exception
 
   def create
-    @query_uuid = params[:context_uuid]
+    @query_uuid = params[:query_uuid]
     render_odm
   end
 
-  def cancel
-    render_nothing
-  end
-
-  def forward
-    render_nothing
-  end
-
-  def answer
-    render_nothing
-  end
-
-  def close
-    render_nothing
-  end
-
-  def requery
+  def edit
     render_nothing
   end
 

@@ -6,13 +6,11 @@ MockRws::Application.routes.draw do
  root to: 'application#index'
 
 #Query Routes
- get 'RaveWebServices/CodingContext/error-rws:rws_code/Query' => 'error#index', as: :error_index
- get 'RaveWebServices/CodingContext/:context_uuid/Query' => 'query#create', as: :query_open
- get 'RaveWebServices/Query/:query_uuid/Cancel' => 'query#cancel', as: :query_cancel
- get 'RaveWebServices/Query/:query_uuid/Forward' => 'query#forward', as: :query_forward
- get 'RaveWebServices/Query/:query_uuid/Answer' => 'query#answer', as: :query_answer
- get 'RaveWebServices/Query/:query_uuid/Close' => 'query#close', as: :query_close
- get 'RaveWebServices/Query/:query_uuid/Re-query' => 'query#requery', as: :query_requery
+ get 'RaveWebServices/CodingContext/error-rws:rws_code/Query/:query_uuid' => 'error#index', as: :query_create_error
+ get 'RaveWebServices/CodingContext/:context_uuid/Query/:query_uuid' => 'query#create', as: :query_create
+
+ get 'RaveWebServices/Query/error-rws:rws_code/*method' => 'error#index', as: :query_edit_error
+ get 'RaveWebServices/Query/:query_uuid/*method' => 'query#edit', as: :query_edit
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

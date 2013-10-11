@@ -6,6 +6,6 @@
  	xmlns:mdsol="http://www.mdsol.com/ns/odm/metadata"
  	xmlns="http://www.cdisc.org/ns/odm/v1.3">
       <mdsol:PartialClinicalData>
-            <mdsol:Query CancelURI="<%= query_cancel_url(@query_uuid) %>" CancelVERB="POST" />
+            <mdsol:Query CancelURI="<%= query_edit_url(@query_uuid, "Cancel") %>" CancelVERB="POST" />
       </mdsol:PartialClinicalData>
 </ODM>
