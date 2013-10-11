@@ -3,7 +3,7 @@ MockRws::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
- root to: 'application#index'
+ root to: 'documentation#index'
 
 #Query Routes
  get 'RaveWebServices/CodingContext/error-rws:rws_code/Query/:query_uuid' => 'error#index', as: :query_create_error
