@@ -1,13 +1,20 @@
+<div class="jumbotron">
+	<div clas="container">
 <h1>Mock RWS Documentation</h1>
-<div>Version 0.0.1</div>
-
-<h2>Coder Endpoints</h2>
-<p>All endpoints described here are maintained and used by the Coder application.</p>
+<p>Version 0.0.1</p>
+</div>
+</div>
+<div class="container">
+	<div class="page-header">
+		<h2>Coder <small>Endpoints</small></h2>
+		<p>All endpoints described here are maintained and used by the Coder application.</p>
+	</div>
 <h3>Open Query</h3>
 <div class="api-request">
 	<h4>Request</h4>
-	<h5 class="url"><span class="http-method">POST:</span> <%= query_create_url(":context_uuid", ":query_uuid")%></h5>
-	<div class="payload">
+	<div class="panel panel-default">
+	<div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_url(":context_uuid", ":query_uuid")%></div>
+	<div class="panel-body">
 		<pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ODM 
@@ -26,6 +33,10 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
 &lt;/ODM&gt;
 </pre>
 	</div>
+	</div>
+  	<div class="alert alert-info">
+        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
+    </div>
 	<h6>URL Params</h6>
 	<ul class="url-params">
 		<li>
@@ -49,8 +60,9 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
 		</li>
 	</ul>
 	<h4>Response</h4>
-	<h5>Http Status: 200</h5>
-	<div class="payload">
+	<div class="panel panel-success">
+	<div class="panel-heading">Http Status: 200</div>
+	<div class="panel-body">
 		<pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ODM 
@@ -61,11 +73,13 @@ xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot;
 xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
     &lt;mdsol:PartialClinicalData&gt;
 
-      &lt;mdsol:Query CancelURI=&quot;http://mock-rws.dev/RaveWebServices/Query/:query_uuid/Cancel&quot; 
+      &lt;mdsol:Query CancelURI=&quot;<%= query_edit_url(":query_uuid","Cancel") %>&quot; 
       	CancelVERB=&quot;POST&quot; /&gt;
 
     &lt;/mdsol:PartialClinicalData&gt;
 &lt;/ODM&gt;
 		</pre>
 	</div>
+	</div>
+</div>
 </div>
