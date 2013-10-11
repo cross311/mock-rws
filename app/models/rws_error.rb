@@ -12,16 +12,16 @@ class RWS_Error
 		when "00121"
 			self.RWS00121
 		else
-			self.RWSUnknown
+			self.RWSUnknown(rws_short_code)
 		end
 	end
 
 	private
 
-	def self.RWSUnknown
+	def self.RWSUnknown(rws_short_code)
 		error = new()
 		error.message = "Internal Server Error"
-		error.rws_code = "RWS00000"
+		error.rws_code = "RWS#{rws_short_code}"
 		error.mws_status = "0000000"
 		error.http_status = :internal_server_error
 		error

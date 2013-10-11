@@ -10,8 +10,7 @@
 		<p>All endpoints described here are maintained and used by the Coder application.</p>
 	</div>
 <h3>Open Query</h3>
-<div class="api-request">
-	<h4>Request</h4>
+	<h4>Success Request</h4>
 	<div class="panel panel-default">
 	<div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_url(":context_uuid", ":query_uuid")%></div>
 	<div class="panel-body">
@@ -81,5 +80,144 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
 		</pre>
 	</div>
 	</div>
-</div>
+
+
+  <h4>Error Request</h4>
+  <div class="panel panel-default">
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_error_url(":rws_code", ":query_uuid")%></div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ODM 
+FileType=&quot;Snapshot&quot; 
+CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
+FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
+ODMVersion=&quot;1.3&quot; 
+xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
+xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
+  &lt;mdsol:PartialClinicalData&gt;
+
+    &lt;!-- the Query Open action --&gt;
+    &lt;mdsol:Query Recipient=&quot;:marking_group&quot; Value=&quot;:query_text&quot;/&gt;
+
+  &lt;/mdsol:PartialClinicalData&gt;
+&lt;/ODM&gt;
+</pre>
+  </div>
+  </div>
+    <div class="alert alert-info">
+        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
+    </div>
+  <h6>URL Params</h6>
+  <ul class="url-params">
+    <li>
+      <span class="url-param">rws_code:</span>
+      The RWS code you would like the mock endpoint to return with.
+    </li>
+    <li>
+      <span class="url-param">query_uuid:</span>
+      UUID that is created by Coder to uniquely identify the created query against the Rave datapoint.
+    </li>
+  </ul>
+  <h6>Payload Params</h6>
+  <ul class="payload-params">
+    <li>
+      <span class="payload-param">marking_group:</span>
+      The name of the Rave marking group to open the query up to.
+    </li>
+    <li>
+      <span class="payload-param">query_text:</span>
+      The query to display to the Rave marking group against the Rave datapoint.
+    </li>
+  </ul>
+  <h4>Response</h4>
+  <div class="panel panel-warning">
+  <div class="panel-heading">Http Status: 404, Header X-MWS-Status: 0200002</div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;errors xml:lang='en'&gt;
+    &lt;error logref='afae55ca-67c8-464b-9d4f-28a12e80991f'&gt;
+        &lt;message&gt;Internal Server Error&lt;/message&gt;
+        &lt;link rel='help' 
+          href='http://rws-webhelp.s3.amazonaws.com/WebHelp_ENG/search.html?q=RWS:rws_code' 
+          title='Error information'/&gt;
+    &lt;/error&gt;
+&lt;/errors&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+    </pre>
+  </div>
+  </div>
+
+
+  <h4>Success Request With Error Cancel Query URI</h4>
+  <div class="panel panel-default">
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_create_edit_error_url(":rws_code", ":query_uuid")%></div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ODM 
+FileType=&quot;Snapshot&quot; 
+CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
+FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
+ODMVersion=&quot;1.3&quot; 
+xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
+xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
+  &lt;mdsol:PartialClinicalData&gt;
+
+    &lt;!-- the Query Open action --&gt;
+    &lt;mdsol:Query Recipient=&quot;:marking_group&quot; Value=&quot;:query_text&quot;/&gt;
+
+  &lt;/mdsol:PartialClinicalData&gt;
+&lt;/ODM&gt;
+</pre>
+  </div>
+  </div>
+    <div class="alert alert-info">
+        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
+    </div>
+  <h6>URL Params</h6>
+  <ul class="url-params">
+    <li>
+      <span class="url-param">rws_code:</span>
+      The RWS code you would like the cancel query request to return with.
+    </li>
+    <li>
+      <span class="url-param">query_uuid:</span>
+      UUID that is created by Coder to uniquely identify the created query against the Rave datapoint.
+    </li>
+  </ul>
+  <h6>Payload Params</h6>
+  <ul class="payload-params">
+    <li>
+      <span class="payload-param">marking_group:</span>
+      The name of the Rave marking group to open the query up to.
+    </li>
+    <li>
+      <span class="payload-param">query_text:</span>
+      The query to display to the Rave marking group against the Rave datapoint.
+    </li>
+  </ul>
+  <h4>Response</h4>
+  <div class="panel panel-success">
+  <div class="panel-heading">Http Status: 200</div>
+  <div class="panel-body">
+    <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ODM 
+FileType=&quot;Snapshot&quot;
+FileOID=&quot;06ad1826-2b3e-4928-be39-798d93074049&quot;
+ODMVersion=&quot;1.3&quot; 
+xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot;
+xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
+    &lt;mdsol:PartialClinicalData&gt;
+
+      &lt;mdsol:Query CancelURI=&quot;<%= query_edit_error_url(":rws_code","Cancel") %>&quot; 
+        CancelVERB=&quot;POST&quot; /&gt;
+
+    &lt;/mdsol:PartialClinicalData&gt;
+&lt;/ODM&gt;
+    </pre>
+  </div>
+  </div>
 </div>
