@@ -316,41 +316,16 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
 <h3 id="query-cancel">Cancel Query</h3>
   <h4 id="query-cancel-success">Success Request</h4>
   <div class="panel panel-default">
-  <div class="panel-heading"><span class="http-method">DELETE:</span> <%= query_edit_url(":query_uuid", "Cancel")%></div>
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_edit_url(":query_uuid", "Cancel")%></div>
   <div class="panel-body">
-    <pre>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;ODM 
-FileType=&quot;Snapshot&quot; 
-CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
-FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
-ODMVersion=&quot;1.3&quot; 
-xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
-xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
-  &lt;mdsol:PartialClinicalData&gt;
-
-    &lt;mdsol:Query Recipient=&quot;:marking_group&quot;/&gt;
-
-  &lt;/mdsol:PartialClinicalData&gt;
-&lt;/ODM&gt;
-</pre>
+    <pre>NO CONTENT</pre>
   </div>
   </div>
-    <div class="alert alert-info">
-        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
-    </div>
   <h6>URL Params</h6>
   <ul class="url-params">
     <li>
       <span class="url-param">query_uuid:</span>
       UUID that was created by Coder to uniquely identify the canceling query against the Rave datapoint.
-    </li>
-  </ul>
-  <h6>Payload Params</h6>
-  <ul class="payload-params">
-    <li>
-      <span class="payload-param">marking_group:</span>
-      The name of the Rave marking group to answer the query to.
     </li>
   </ul>
   <h4>Response</h4>
@@ -368,29 +343,11 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
         <strong>Heads up!</strong> Coder does not build the cancel query URI, it must be the response of the open query.  To assist in mocking a RWS error on cancel please see "<a href="#query-open-success-cancel-error">Open Query Success Response With RWS Error Cancel URI</a>"."
     </div>
   <div class="panel panel-default">
-  <div class="panel-heading"><span class="http-method">DELETE:</span> <%= query_edit_error_url(":rws_code", "Cancel")%></div>
+  <div class="panel-heading"><span class="http-method">POST:</span> <%= query_edit_error_url(":rws_code", "Cancel")%></div>
   <div class="panel-body">
-    <pre>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;ODM 
-FileType=&quot;Snapshot&quot; 
-CreationDateTime=&quot;2013-02-07T15:06:36.362-00:00&quot; 
-FileOID=&quot;d5104eb5-a357-44c6-b47e-9f667d8a6002&quot;
-ODMVersion=&quot;1.3&quot; 
-xmlns:mdsol=&quot;http://www.mdsol.com/ns/odm/metadata&quot; 
-xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
-  &lt;mdsol:PartialClinicalData&gt;
-
-    &lt;mdsol:Query Recipient=&quot;:marking_group&quot; /&gt;
-
-  &lt;/mdsol:PartialClinicalData&gt;
-&lt;/ODM&gt;
-</pre>
+    <pre>NO CONTENT</pre>
   </div>
   </div>
-    <div class="alert alert-info">
-        <strong>Heads up!</strong> Does not actually validate or use any part of the request body!
-    </div>
   <h6>URL Params</h6>
   <ul class="url-params">
     <li>
@@ -400,13 +357,6 @@ xmlns=&quot;http://www.cdisc.org/ns/odm/v1.3&quot;&gt;
     <li>
       <span class="url-param">query_uuid:</span>
       UUID that was created by Coder to uniquely identify the canceling query against the Rave datapoint.
-    </li>
-  </ul>
-  <h6>Payload Params</h6>
-  <ul class="payload-params">
-    <li>
-      <span class="payload-param">marking_group:</span>
-      The name of the Rave marking group to cancel the query from.
     </li>
   </ul>
   <h4>Response</h4>
